@@ -28,6 +28,18 @@ This plugin uses
 [sonar-sslr-grappa](https://github.com/litesolutions/sonar-sslr-grappa), meaning
 that the full language is parsed by one and only one channel.
 
+## Building it...
+
+At the moment, the above package is not published on maven! You will therefore
+need to clone it and type the following at the command line:
+
+```
+# Unix users...
+./gradlew clean test install
+# Windows users...
+gradlew.bat clean test install
+```
+
 ## Testing it...
 
 There is a module using the SSLR toolkit, which you can use to test your inputs.
