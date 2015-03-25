@@ -11,6 +11,8 @@ public enum DummyLanguageGrammar
     OPERAND,
     OPERATOR,
     EXPRESSION,
+
+    SOURCE,
     ;
 
     public static void injectInto(final LexerfulGrammarBuilder builder)
@@ -31,5 +33,7 @@ public enum DummyLanguageGrammar
             OPERATOR,
             OPERAND
         );
+
+        builder.rule(SOURCE).is(builder.oneOrMore(EXPRESSION));
     }
 }

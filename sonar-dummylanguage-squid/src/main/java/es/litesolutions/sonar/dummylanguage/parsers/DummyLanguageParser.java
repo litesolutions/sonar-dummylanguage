@@ -39,4 +39,27 @@ public class DummyLanguageParser
             operand()
         );
     }
+
+    Rule nl()
+    {
+        return oneOrMore(optional(cr()), lf());
+    }
+
+    Rule comment()
+    {
+        return sequence('#', zeroOrMore(noneOf("\r\n")));
+    }
+
+    Rule oneLine()
+    {
+        return firstOf(expression(), comment());
+    }
+
+    public Rule sourcefile()
+    {
+        return sequence(
+            join(oneLine()).using(nl()).min(1),
+            optional(nl())
+        );
+    }
 }

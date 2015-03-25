@@ -26,8 +26,8 @@ public final class DummyLanguageSslrToolkit
         final DummyLanguageParser parser
             = Parboiled.createParser(DummyLanguageParser.class);
 
-        final Rule rule = parser.expression();
-        final DummyLanguageGrammar key = DummyLanguageGrammar.EXPRESSION;
+        final Rule rule = parser.sourcefile();
+        final DummyLanguageGrammar key = DummyLanguageGrammar.SOURCE;
 
         final Parser<Grammar> grammarParser
             = DummyLanguageSslrParser.buildSslrParser(rule, key);
