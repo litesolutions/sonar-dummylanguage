@@ -4,10 +4,15 @@ import com.sonar.sslr.api.AstNode;
 import com.sonar.sslr.api.Grammar;
 import es.litesolutions.sonar.dummylanguage.grammars.DummyLanguageGrammar;
 import es.litesolutions.sonar.dummylanguage.tokens.Operands;
+import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
+import org.sonar.squidbridge.annotations.ActivatedByDefault;
+import org.sonar.squidbridge.annotations.SqaleConstantRemediation;
+import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import org.sonar.squidbridge.checks.SquidCheck;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @Rule(
@@ -16,6 +21,10 @@ import java.util.List;
     name = "Zero in expression",
     status = "BETA"
 )
+@ActivatedByDefault
+@SqaleSubCharacteristic(RulesDefinition.SubCharacteristics.LOGIC_RELIABILITY)
+@SqaleConstantRemediation("1min")
+@ParametersAreNonnullByDefault
 public final class ZeroCheck
     extends SquidCheck<Grammar>
 {
