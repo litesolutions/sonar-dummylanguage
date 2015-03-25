@@ -34,9 +34,19 @@ import java.util.List;
     name = "Zero in expression",
     status = "BETA"
 )
+// This annotation is used by an AnnotationBasedProfileBuilder
 @ActivatedByDefault
 @SqaleSubCharacteristic(RulesDefinition.SubCharacteristics.LOGIC_RELIABILITY)
 @SqaleConstantRemediation("1min")
+
+/*
+ * Use the below if you want your rule to belong to a given profile; in this
+ * case an AnnotationProfileParser will be used
+ */
+//@BelongsToProfile(
+//    title = DummyLanguageChecks.SONAR_WAY_PROFILE,
+//    priority = Priority.MAJOR
+//)
 @ParametersAreNonnullByDefault
 public final class ZeroCheck
     extends SquidCheck<Grammar>

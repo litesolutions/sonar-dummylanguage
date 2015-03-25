@@ -19,18 +19,30 @@
  */
 package es.litesolutions.sonar.dummylanguage;
 
+import es.litesolutions.sonar.SonarConstants;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+/**
+ * Injection of rules definitions into a rule repository
+ *
+ * <p>You need checks to be present in a repository in order for them to be
+ * accessible by quality profiles. Therefore all your checks which you use in
+ * either profile definition needs to be registered in at least one repository.
+ * </p>
+ *
+ * <p>This implementation stores all the checks in the default rule repository.
+ * </p>
+ *
+ * @see SonarConstants#DEFAULT_RULE_REPOSITORY
+ */
 @ParametersAreNonnullByDefault
 public class DummyLanguageRulesDefinition
     implements RulesDefinition
 {
-    private static final String REPOSITORY_NAME = "SonarQube";
-
     @Override
     public void define(final Context context)
     {
@@ -42,7 +54,7 @@ public class DummyLanguageRulesDefinition
 
         final NewRepository repository
             = context.createRepository(repositoryKey, languageKey)
-            .setName(REPOSITORY_NAME);
+            .setName(SonarConstants.DEFAULT_RULE_REPOSITORY);
 
         AnnotationBasedRulesDefinition.load(repository, languageKey, list);
 
