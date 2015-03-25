@@ -15,7 +15,7 @@ public enum DummyLanguageGrammar
 
     public static void injectInto(final LexerfulGrammarBuilder builder)
     {
-        builder.rule(OPERAND).is(Operands.NUMBER);
+        builder.rule(OPERAND).is(Operands.NUMBER).skip();
 
         builder.rule(OPERATOR).is(
             builder.firstOf(
@@ -24,7 +24,7 @@ public enum DummyLanguageGrammar
                 Operators.MULTIPLY,
                 Operators.DIVIDE
             )
-        );
+        ).skip();
 
         builder.rule(EXPRESSION).is(
             OPERAND,
