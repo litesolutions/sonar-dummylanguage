@@ -17,7 +17,7 @@ import org.sonar.sslr.grammar.LexerfulGrammarBuilder;
 public final class DummyLanguageSslrParser
 {
     private static final GrammarRuleKey FULL_GRAMMAR_KEY
-        = DummyLanguageGrammar.EXPRESSION;
+        = DummyLanguageGrammar.SOURCE;
 
     private DummyLanguageSslrParser()
     {
@@ -83,6 +83,6 @@ public final class DummyLanguageSslrParser
     public static Parser<Grammar> getFullParser()
     {
         final DummyLanguageParser parser = getParser();
-        return buildSslrParser(parser.expression(), FULL_GRAMMAR_KEY);
+        return buildSslrParser(parser.sourcefile(), FULL_GRAMMAR_KEY);
     }
 }
