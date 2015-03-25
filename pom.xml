@@ -21,6 +21,7 @@
         <module>sonar-dummylanguage-squid</module>
         <module>sonar-dummylanguage-checks</module>
         <module>sonar-dummylanguage-sslr-toolkit</module>
+        <module>sonar-dummylanguage-plugin</module>
     </modules>
 
     <build>
