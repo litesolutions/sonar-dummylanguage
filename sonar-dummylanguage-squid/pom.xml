@@ -27,6 +27,22 @@
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--
+            The squid-bridge API depends on 4.5.1; we want 5.0.x
+        -->
+
+        <dependency>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>5.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
             <artifactId>sslr-squid-bridge</artifactId>
