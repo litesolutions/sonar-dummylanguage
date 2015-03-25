@@ -18,11 +18,7 @@
     <name>DummyLanguage</name>
 
     <modules>
-        <!--
-        <module>sonar-objectscript-squid</module>
-        <module>sonar-objectscript-checks</module>
-        <module>sonar-objectscript-plugin</module>
-        -->
+        <module>sonar-dummylanguage-squid</module>
     </modules>
 
     <build>
