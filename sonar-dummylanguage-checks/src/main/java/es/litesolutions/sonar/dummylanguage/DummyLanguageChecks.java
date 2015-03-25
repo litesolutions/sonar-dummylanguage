@@ -11,7 +11,6 @@ import java.util.List;
 public final class DummyLanguageChecks
 {
     public static final String REPOSITORY_KEY = "dummylanguage";
-    public static final String SONAR_WAY_PROFILE = "Sonar way";
 
     private DummyLanguageChecks()
     {

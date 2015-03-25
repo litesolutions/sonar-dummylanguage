@@ -20,9 +20,11 @@ import org.sonar.squidbridge.api.CheckMessage;
 import org.sonar.squidbridge.api.SourceCode;
 import org.sonar.squidbridge.api.SourceFile;
 import org.sonar.squidbridge.indexer.QueryByType;
+import sonarhack.com.google.common.collect.Lists;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -75,8 +77,17 @@ public final class DummyLanguageSquidSensor
         final AstScanner<Grammar> scanner = DummyLanguageAstScanner.create(cfg,
                 visitors);
 
-        for (final File file: fs.files(predicate))
-            scanner.scanFile(file);
+        /*
+         * You MUST do it this way!
+         *
+         * scanner.scanFile() delegates to .scanFiles(), which triggers all of
+         * the visitors to .init() themselves... Therefore if you scan one by
+         * one, your visitor will run once on the first file, twice on the
+         * second one, etc etc...
+         */
+        final List<File> files = Lists.newArrayList(fs.files(predicate));
+
+        scanner.scanFiles(files);
 
         for (final SourceCode code: scanner.getIndex().search(SOURCE_FILES))
             save((SourceFile) code);
