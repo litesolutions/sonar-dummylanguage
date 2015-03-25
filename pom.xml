@@ -19,6 +19,7 @@
 
     <modules>
         <module>sonar-dummylanguage-squid</module>
+        <module>sonar-dummylanguage-checks</module>
     </modules>
 
     <build>
