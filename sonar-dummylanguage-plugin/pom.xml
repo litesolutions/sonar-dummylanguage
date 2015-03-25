@@ -13,6 +13,7 @@
     <artifactId>sonar-dummylanguage-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
     <version>0.1.0-SNAPSHOT</version>
+    <description>Plugin for a dummy language</description>
 
     <properties>
         <sonar.pluginClass>es.litesolutions.sonar.dummylanguage.DummyLanguagePlugin</sonar.pluginClass>
@@ -37,6 +38,27 @@
             <groupId>es.litesolutions</groupId>
             <artifactId>sonar-dummylanguage-checks</artifactId>
             <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--
+            EXCEPT FOR THIS ONE!
+
+            For some reason, the sonar-plugin packaging REQUIRES that this
+            dependency be explicitly declared, EVEN if a dependency "down the
+            road" already depends on it :(
+        -->
+
+        <dependency>
+            <groupId>org.codehaus.sonar</groupId>
+            <artifactId>sonar-plugin-api</artifactId>
+            <version>5.0.1</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
