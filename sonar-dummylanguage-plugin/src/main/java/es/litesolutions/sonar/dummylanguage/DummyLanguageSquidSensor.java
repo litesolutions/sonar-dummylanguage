@@ -27,10 +27,10 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
- * Squid sensor... Whatever that means!
+ * Squid sensor
  *
- * <p>This seems to be what will be called when performing the actual parsing.
- * </p>
+ * <p>This is what will be called by the Sonar runner when you analyze a
+ * project.</p>
  */
 @SuppressWarnings("UnnecessaryFullyQualifiedName")
 public final class DummyLanguageSquidSensor
@@ -58,16 +58,11 @@ public final class DummyLanguageSquidSensor
 
         predicate = fs.predicates().hasLanguage(DummyLanguageLanguage.KEY);
 
-        // TODO: redundancy with ObjectScriptRuleRepository?
         checks = checkFactory.
             <SquidAstVisitor<Grammar>>create(DummyLanguageChecks.REPOSITORY_KEY)
             .addAnnotatedChecks(DummyLanguageChecks.all());
     }
 
-    /*
-     * This LOOKS like it is what will be effectively called by the Sonar
-     * runner.
-     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void analyse(final Project module, final SensorContext context)

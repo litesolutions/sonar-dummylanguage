@@ -7,6 +7,7 @@ import es.litesolutions.sonar.dummylanguage.parsers.DummyLanguageParser;
 import org.parboiled.Parboiled;
 import org.parboiled.Rule;
 import org.sonar.colorizer.Tokenizer;
+import org.sonar.sslr.grammar.GrammarRuleKey;
 import org.sonar.sslr.toolkit.AbstractConfigurationModel;
 import org.sonar.sslr.toolkit.ConfigurationProperty;
 import org.sonar.sslr.toolkit.Toolkit;
@@ -14,6 +15,12 @@ import org.sonar.sslr.toolkit.Toolkit;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * SSLR toolkit for the language
+ *
+ * <p>In order to only test parts of your grammar, change the {@code rule} and
+ * {@code key} variables in {@code main()}.</p>
+ */
 public final class DummyLanguageSslrToolkit
 {
     private DummyLanguageSslrToolkit()
@@ -27,7 +34,7 @@ public final class DummyLanguageSslrToolkit
             = Parboiled.createParser(DummyLanguageParser.class);
 
         final Rule rule = parser.sourcefile();
-        final DummyLanguageGrammar key = DummyLanguageGrammar.SOURCE;
+        final GrammarRuleKey key = DummyLanguageGrammar.SOURCE;
 
         final Parser<Grammar> grammarParser
             = DummyLanguageSslrParser.buildSslrParser(rule, key);

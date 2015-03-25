@@ -12,7 +12,7 @@ import org.sonar.sslr.grammar.GrammarRuleKey;
 import org.sonar.sslr.grammar.LexerfulGrammarBuilder;
 
 /**
- * ObjectScript parser for use by the Sonar Runner
+ * Dummy language SSLR parser
  */
 public final class DummyLanguageSslrParser
 {
@@ -25,7 +25,16 @@ public final class DummyLanguageSslrParser
     }
 
     /**
-     * Return the grammar builder for ObjectScript
+     * Return the grammar builder for the language's grammar
+     *
+     * <p>This method injects the language grammar into the returned builder;
+     * what it <strong>will not</strong> do, however, is {@link
+     * LexerfulGrammarBuilder#setRootRule(GrammarRuleKey) set the root rule}.
+     * </p>
+     *
+     * <p>This is what will allow you, along with selecting the appropriate rule
+     * from your {@link DummyLanguageParser parser}, to only test parts of your
+     * grammar using the toolkit.</p>
      *
      * @return see description
      */

@@ -5,6 +5,9 @@ import es.litesolutions.sonar.dummylanguage.checks.ZeroCheck;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The list of checks
+ */
 public final class DummyLanguageChecks
 {
     public static final String REPOSITORY_KEY = "dummylanguage";
