@@ -20,7 +20,7 @@ import org.sonar.squidbridge.api.CheckMessage;
 import org.sonar.squidbridge.api.SourceCode;
 import org.sonar.squidbridge.api.SourceFile;
 import org.sonar.squidbridge.indexer.QueryByType;
-import sonarhack.com.google.common.collect.Lists;
+import r.com.google.common.collect.Lists;
 
 import java.io.File;
 import java.util.Collection;

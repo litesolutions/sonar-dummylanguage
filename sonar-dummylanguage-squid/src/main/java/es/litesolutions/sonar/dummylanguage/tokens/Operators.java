@@ -1,13 +1,14 @@
 package es.litesolutions.sonar.dummylanguage.tokens;
 
 import com.sonar.sslr.api.AstNode;
-import es.litesolutions.sonar.grappa.ValueTokenType;
+import com.sonar.sslr.api.TokenType;
+import es.litesolutions.sonar.grappa.tokentypes.WithValue;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public enum  Operators
-    implements ValueTokenType
+public enum Operators
+    implements TokenType, WithValue
 {
     PLUS("+"),
     MINUS("-"),

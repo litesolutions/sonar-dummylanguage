@@ -4,10 +4,8 @@ import com.sonar.sslr.api.Grammar;
 import com.sonar.sslr.impl.Parser;
 import es.litesolutions.sonar.dummylanguage.grammars.DummyLanguageGrammar;
 import es.litesolutions.sonar.dummylanguage.parsers.DummyLanguageParser;
-import org.parboiled.Parboiled;
-import org.parboiled.Rule;
+import es.litesolutions.sonar.grappa.GrappaSslrFactory;
 import org.sonar.colorizer.Tokenizer;
-import org.sonar.sslr.grammar.GrammarRuleKey;
 import org.sonar.sslr.toolkit.AbstractConfigurationModel;
 import org.sonar.sslr.toolkit.ConfigurationProperty;
 import org.sonar.sslr.toolkit.Toolkit;
@@ -18,8 +16,8 @@ import java.util.List;
 /**
  * SSLR toolkit for the language
  *
- * <p>In order to only test parts of your grammar, change the {@code rule} and
- * {@code key} variables in {@code main()}.</p>
+ * <p>In order to only test parts of your grammar, change the method call to the
+ * constructed {@link GrappaSslrFactory}.</p>
  */
 public final class DummyLanguageSslrToolkit
 {
@@ -30,17 +28,16 @@ public final class DummyLanguageSslrToolkit
 
     public static void main(final String... args)
     {
-        final DummyLanguageParser parser
-            = Parboiled.createParser(DummyLanguageParser.class);
+        final GrappaSslrFactory factory = GrappaSslrFactory.builder(
+            DummyLanguageParser.class, DummyLanguageGrammar.class
+        ).build();
 
-        final Rule rule = parser.sourcefile();
-        final GrammarRuleKey key = DummyLanguageGrammar.SOURCE;
+        final Parser<Grammar> parser = factory.getFullParser();
 
-        final Parser<Grammar> grammarParser
-            = DummyLanguageSslrParser.buildSslrParser(rule, key);
+        final DummyConfigurationModel model
+            = new DummyConfigurationModel(parser);
 
-        final Toolkit toolkit = new Toolkit("foo",
-            new DummyConfigurationModel(grammarParser));
+        final Toolkit toolkit = new Toolkit("foo", model);
 
         toolkit.run();
     }

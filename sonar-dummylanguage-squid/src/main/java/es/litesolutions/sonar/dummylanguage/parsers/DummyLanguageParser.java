@@ -1,11 +1,12 @@
 package es.litesolutions.sonar.dummylanguage.parsers;
 
-import es.litesolutions.sonar.dummylanguage.DummyLanguageSslrParser;
+import com.github.fge.grappa.rules.Rule;
 import es.litesolutions.sonar.dummylanguage.tokens.Operands;
 import es.litesolutions.sonar.dummylanguage.tokens.Operators;
 import es.litesolutions.sonar.grappa.GrappaChannel;
+import es.litesolutions.sonar.grappa.GrappaSslrFactory;
 import es.litesolutions.sonar.grappa.SonarParserBase;
-import org.parboiled.Rule;
+import es.litesolutions.sonar.grappa.lookup.MainRule;
 
 /**
  * Grappa parser for the full language
@@ -16,7 +17,7 @@ import org.parboiled.Rule;
  * rules (and tokens/grammar keys) as your language evolves.</p>
  *
  * <p>An instance of this parser needs to be instantiated by your SSLR parser;
- * for this language, the class is {@link DummyLanguageSslrParser}.</p>
+ * this uses a {@link GrappaSslrFactory} to do the job.</p>
  *
  * <p>Note: the channel using this parser is a {@link GrappaChannel}; it will
  * generate a trace file which you can analyze using the <a
@@ -40,10 +41,10 @@ public class DummyLanguageParser
     public Rule operator()
     {
         return firstOf(
-            valueToken(Operators.PLUS),
-            valueToken(Operators.MINUS),
-            valueToken(Operators.MULTIPLY),
-            valueToken(Operators.DIVIDE)
+            token(Operators.PLUS),
+            token(Operators.MINUS),
+            token(Operators.MULTIPLY),
+            token(Operators.DIVIDE)
         );
     }
 
@@ -73,6 +74,7 @@ public class DummyLanguageParser
         return firstOf(expression(), comment());
     }
 
+    @MainRule
     public Rule sourcefile()
     {
         return sequence(

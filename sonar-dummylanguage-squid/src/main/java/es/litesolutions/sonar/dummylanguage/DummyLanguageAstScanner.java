@@ -2,7 +2,10 @@ package es.litesolutions.sonar.dummylanguage;
 
 import com.sonar.sslr.api.Grammar;
 import com.sonar.sslr.impl.Parser;
+import es.litesolutions.sonar.dummylanguage.grammars.DummyLanguageGrammar;
 import es.litesolutions.sonar.dummylanguage.metrics.DummyLanguageMetrics;
+import es.litesolutions.sonar.dummylanguage.parsers.DummyLanguageParser;
+import es.litesolutions.sonar.grappa.GrappaSslrFactory;
 import org.sonar.squidbridge.AstScanner;
 import org.sonar.squidbridge.CommentAnalyser;
 import org.sonar.squidbridge.SquidAstVisitor;
@@ -34,7 +37,10 @@ public final class DummyLanguageAstScanner
         final SquidAstVisitorContextImpl<Grammar> context
             = new SquidAstVisitorContextImpl<>(project);
 
-        final Parser<Grammar> parser = DummyLanguageSslrParser.getFullParser();
+        final GrappaSslrFactory factory = GrappaSslrFactory.builder(
+            DummyLanguageParser.class, DummyLanguageGrammar.class
+        ).build();
+        final Parser<Grammar> parser = factory.getFullParser();
 
         final AstScanner.Builder<Grammar> builder = AstScanner.builder(context)
             .setBaseParser(parser);
